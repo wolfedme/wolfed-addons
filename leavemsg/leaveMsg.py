@@ -8,6 +8,8 @@ from typing import Any
 Cog: Any = getattr(commands, "Cog", object)
 
 
+# TODO: Refactor functions for more intuitive use
+
 class LeaveMsg(Cog):
 	"""
 	Posts message to channel when a user leaves the Server
@@ -16,9 +18,9 @@ class LeaveMsg(Cog):
 	def __init__(self, bot: Red):
 		self.bot = bot
 		self.config = Config.get_conf(self, identifier=69696969, force_registration=True)
-		default_guild = {"channel": "",
+		default_guild = {"channel":      "",
 		                 "channel_name": "Please set a channel with [p]leaveMsg setChannel",
-		                 "message": "%s isch fort"}
+		                 "message":      "%s isch fort"}
 
 		self.config.register_guild(**default_guild)
 
@@ -31,7 +33,6 @@ class LeaveMsg(Cog):
 			channel = await self.config.guild(guild).channel_name()
 			message = await self.config.guild(guild).message()
 			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel))
-
 
 	@leaveMsg.command()
 	async def setMessage(self, ctx: Context, msg: str):
