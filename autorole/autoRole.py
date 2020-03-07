@@ -82,5 +82,5 @@ class AutoRole(Cog):
 			loggingChannel.send("Could not assign role %s to %s, because it doesn't exist (anymore). Please reassign with `[p]autoRole onJoin [prefix] [role]`.")
 
 		await member.edit(nick=nickname)
-		await member.add_roles(joinRole, reason=_("Joined"))
+		await member.add_roles(joinRole, reason="Joined")
 		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole.name))
