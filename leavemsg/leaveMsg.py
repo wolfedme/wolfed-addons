@@ -17,6 +17,7 @@ class LeaveMsg(Cog):
 		self.bot = bot
 		self.config = Config.get_conf(self, identifier=69696969, force_registration=True)
 		default_guild = {"channel": "",
+		                 "channel_name": "Please set a channel with [p]leaveMsg setChannel",
 		                 "message": "%s isch fort"}
 
 		self.config.register_guild(**default_guild)
@@ -24,13 +25,12 @@ class LeaveMsg(Cog):
 	@commands.group(aliases=["lmsg"])
 	@checks.mod_or_permissions(administrator=True)
 	async def leaveMsg(self, ctx: Context):
-		""" Mother? """
-		# TODO: return current settings
+		""" Post leave messages on user leave """
 		if ctx.invoked_subcommand is None:
 			guild = ctx.guild
-			channel = await self.config.guild(guild).channel()
+			channel = await self.config.guild(guild).channel_name()
 			message = await self.config.guild(guild).message()
-			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel.name))
+			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel)
 
 
 	@leaveMsg.command()
