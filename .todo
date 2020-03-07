@@ -1,6 +1,8 @@
-Autonick
-    - Autorole & autorename on join
+AutoRole
     - Find function like 'on_member_rolechange'
+        - Add nickchange for multiple members
+        ---> Maybe add command to change role instead of listening?
 
-Leavemsg
-    - Also add welcome msg
+Welcome
+    - Add feature to add multiple welcome messages and randomize
+    - Add missing %s if not persistent
