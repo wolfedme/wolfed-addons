@@ -34,9 +34,15 @@ class LeaveMsg(Cog):
 
 
 	@leaveMsg.command()
-	async def setMessage(self, ctx: Context, msg):
+	async def setMessage(self, ctx: Context, msg: str):
+		"""
+		Sets the message the bots sends on leave
+		:param ctx: Context
+		:param msg: Message needs to have %s as username
+		"""
 		if msg != "":
 			await self.config.guild(ctx.guild).message.set(msg)
+			await ctx.send("Message `%s` set." % msg)
 		pass
 
 	@leaveMsg.command()
