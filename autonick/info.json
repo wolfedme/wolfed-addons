@@ -1,0 +1,21 @@
+
+{
+  "author": [
+    "Wolfed"
+  ],
+  "bot_version": [
+    3,
+    3,
+    1
+  ],
+  "description": "Adds emoji before nickname based on selected role",
+  "hidden": false,
+  "install_msg": "Start with `[p]load autonick`, then `[p]help AutoNick`",
+  "short": "add emoji on rolechange",
+  "tags": [
+    "wolfed",
+    "utils",
+    "tools",
+    "mod"
+  ]
+}

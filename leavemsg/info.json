@@ -1,0 +1,20 @@
+{
+  "author": [
+    "Wolfed"
+  ],
+  "bot_version": [
+    3,
+    3,
+    1
+  ],
+  "description": "Posts message on leave",
+  "hidden": false,
+  "install_msg": "Start with `[p]load leavemsg`, then `[p]help LeaveMsg`",
+  "short": "leavemsg",
+  "tags": [
+    "wolfed",
+    "utils",
+    "tools",
+    "mod"
+  ]
+}
