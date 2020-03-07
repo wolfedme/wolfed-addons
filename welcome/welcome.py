@@ -45,7 +45,7 @@ class Welcome(Cog):
 		"""
 		if msg != "":
 			await self.config.guild(ctx.guild).joinMessage.set(msg)
-			await ctx.send("Leave message `%s` set." % msg)
+			await ctx.send("Join message `%s` set." % (msg % "$username$"))
 		pass
 	
 	@welcome.command()
@@ -57,7 +57,7 @@ class Welcome(Cog):
 		"""
 		if msg != "":
 			await self.config.guild(ctx.guild).leaveMessage.set(msg)
-			await ctx.send("Leave message `%s` set." % msg)
+			await ctx.send("Leave message `%s` set." % (msg % "$username$"))
 		pass
 
 	@welcome.command()
@@ -93,7 +93,7 @@ class Welcome(Cog):
 		if channel != "":
 			channel = guild.get_channel(channel)
 			out = await self.config.guild(guild).joinMessage()
-			out = (out % member.nick)
+			out = (out % member.name)
 
 			await channel.send(out)
 
