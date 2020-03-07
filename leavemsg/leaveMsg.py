@@ -52,6 +52,7 @@ class LeaveMsg(Cog):
 		"""
 		guild = ctx.guild
 		await self.config.guild(guild).channel.set(ctx.channel.id)
+		await self.config.guild(guild).channel_name.set(ctx.channel.name)
 		await ctx.send("Posting messages to %s" % ctx.channel.name)
 
 	@commands.Cog.listener()
