@@ -5,12 +5,20 @@
     personal cogs for <a href="https://github.com/Cog-Creators/Red-DiscordBot">Red Bot</a>
 </h4>
 
+<<<<<<< HEAD
 <div align="center">
 <a href="https://github.com/wolfedme/wolfed-addons/commits/master"><img src="https://img.shields.io/github/last-commit/wolfedme/wolfed-addons?style=flat-square" alt="Last commit" /></a>
 </div>
 
 # Installation
 This method needs `[p]load downloader` to be set.
+=======
+[![Last Commit](https://github.com/wolfedme/wolfed-addons/commits/master)](https://img.shields.io/github/last-commit/wolfedme/wolfed-addons?style=flat-square)
+
+# Installation
+Enable `[p]load downloader` if already loaded.
+
+>>>>>>> master
 ```
 [p]repo add Wolfed https://github.com/wolfedme/wolfed-addons
 [p]cog install Wolfed <cogname>
