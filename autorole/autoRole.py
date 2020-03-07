@@ -73,12 +73,14 @@ class AutoRole(Cog):
 		loggingChannel = await self.config.guild(guild).logChannel()
 		loggingChannel = guild.get_channel(loggingChannel)
 		joinRole = await self.config.guild(guild).joinRole()
+
 		for r in guild.roles:
 			if r.id == joinRole:
 				joinRole = r
-			else:
-				await loggingChannel.send("Autorole does not exist on server. Could not assign role ID %s to user %s" % (joinRole, member.name))
+		
+		if joinRole == await self.config.guild(guild).joinRole():
+			loggingChannel.send("Could not assign role %s to %s, because it doesn't exist (anymore). Please reassign with `[p]autoRole onJoin [prefix] [role]`.")
 
 		await member.edit(nick=nickname)
-		await member.add_roles(role, reson=_("Joined"))
+		await member.add_roles(joinRole, reson=_("Joined"))
 		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole.name))
