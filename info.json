@@ -1,5 +1,7 @@
 {
-    "author": "Wolfed",
+    "author": [
+        "Wolfed"
+      ],
     "install_msg": "🐺-addons repo successfully added.",
     "short": "Small collection of cogs that I need on my personal discord"
 }
