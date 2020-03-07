@@ -21,8 +21,7 @@ class AutoNick(Cog):
 	@commands.mod_or_permissions(administrator=True)
 	@commands.group()
 	async def autonick(self, ctx):
-		"""Does nothing"""
-		await ctx.send("Doing nothing")
+		pass
 
 	@autonick.command()
 	async def joinEmoji(self, ctx, msg):
