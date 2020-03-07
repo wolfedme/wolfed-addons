@@ -76,7 +76,7 @@ class AutoRole(Cog):
 		for r in guild.roles:
 			if r.id == joinRole:
 				joinRole = r
-			else
+			else:
 				await loggingChannel.send("Autorole does not exist on server. Could not assign role ID %s to user %s" % (joinRole, member.name))
 
 		await member.edit(nick=nickname)
