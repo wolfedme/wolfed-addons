@@ -34,7 +34,7 @@ class Welcome(Cog):
 			channel = await self.config.guild(guild).channel_name()
 			joinMessage = await self.config.guild(guild).joinMessage()
 			leaveMessage = await self.config.guild(guild).leaveMessage()
-			await ctx.send("Posting `%s` and `%s` to %s" % (leaveMessage % "$username$", welcomeMessage % "$username$", channel))
+			await ctx.send("Posting `%s` and `%s` to %s" % (leaveMessage % "$username$", joinMessage % "$username$", channel))
 
 	@welcome.command()
 	async def setJoinMessage(self, ctx: Context, msg: str):
