@@ -1,10 +1,12 @@
 from typing import Any
 import discord
+
 from redbot.core import commands, Config
 
 Cog: Any = getattr(commands, "Cog", object)
 
-class AutoNick(commands.cog):
+
+class AutoNick(Cog):
 	"""Auto renaming based on role. Currently only on joining"""
 
 	def __init__(self, bot):
@@ -60,8 +62,3 @@ class AutoNick(commands.cog):
 
 		await member.edit(nick=nickname)
 		await loggingChannel.send("Changed nickname of %s with prefix %s" % (member.display_name, prefix))
-
-
-
-
-
