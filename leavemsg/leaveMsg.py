@@ -64,10 +64,7 @@ class LeaveMsg(Cog):
 			out = await self.config.guild(guild).message()
 			out = (out % member.nick)
 
-			if await self.bot.embed_requested(channel, member):
-				await channel.send(embed=discord.Embed(description=out, color=self.bot.color))
-			else:
-				await channel.send(out)
+			await channel.send(out)
 
 		else:
 			pass
