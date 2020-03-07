@@ -11,11 +11,6 @@
 
 # Installation
 This method needs `[p]load downloader` to be set.
-=======
-[![Last Commit](https://github.com/wolfedme/wolfed-addons/commits/master)](https://img.shields.io/github/last-commit/wolfedme/wolfed-addons?style=flat-square)
-
-# Installation
-Enable `[p]load downloader` if already loaded.
 
 ```
 [p]repo add Wolfed https://github.com/wolfedme/wolfed-addons
