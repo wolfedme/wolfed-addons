@@ -30,7 +30,7 @@ class LeaveMsg(Cog):
 			guild = ctx.guild
 			channel = await self.config.guild(guild).channel_name()
 			message = await self.config.guild(guild).message()
-			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel)
+			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel))
 
 
 	@leaveMsg.command()
