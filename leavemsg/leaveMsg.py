@@ -24,7 +24,7 @@ class LeaveMsg(Cog):
 
 		self.config.register_guild(**default_guild)
 
-	@commands.group(aliases=["lmsg"])
+	@commands.group()
 	@checks.mod_or_permissions(administrator=True)
 	async def leaveMsg(self, ctx: Context):
 		""" Post leave messages on user leave """
@@ -37,7 +37,7 @@ class LeaveMsg(Cog):
 	@leaveMsg.command()
 	async def setMessage(self, ctx: Context, msg: str):
 		"""
-		Sets the message the bots sends on leave
+		Sets the message the bots sends on leave. Syntax is [p]leaveMsg setMessage "%s has left"
 		:param ctx: Context
 		:param msg: Message needs to have %s as username
 		"""
