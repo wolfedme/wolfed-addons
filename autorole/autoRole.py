@@ -6,27 +6,41 @@ from redbot.core import commands, Config
 Cog: Any = getattr(commands, "Cog", object)
 
 
-class AutoNick(Cog):
-	"""Auto renaming based on role. Currently only on joining"""
+class AutoRole(Cog):
+	"""Auto role assign and auto renaming based on role. Currently only on joining"""
 
 	def __init__(self, bot):
 		self.bot = bot
 		self.config = Config.get_conf(self, identifier=69696969)
-		default_guild = {"onJoinChar": "🥨",
-		                 "logChannel": ""}
+		default_guild = {"joinChar": "🥨",
+		                 "joinRole": "",
+						 "logChannel": "",
+						 }
 
 		self.config.register_guild(**default_guild)
 
 	@commands.guild_only()
 	@commands.mod_or_permissions(administrator=True)
 	@commands.group()
-	async def autonick(self, ctx):
+	@commands.bot_has_permissions(manage_roles=True, manage_nicknames=True)
+	async def autoRole(self, ctx):
 		pass
 
 	@autonick.command()
-	async def joinEmoji(self, ctx, msg):
-		"""Define the emoji which gets added in front of a new users nickname"""
-		await ctx.send("Doing nothing")
+	async def onJoin(self, ctx, char, role: discord.Role):
+		"""Define the emoji which gets added in front of a new users nickname. Syntax: `[p]autoRole onJoin [nicknamePrefix] [role]`"""
+		if char == "":
+			await ctx.send("Empty prefix")
+			pass
+		if role == "":
+			await ctx.send("Empty role")
+			pass
+		if role != discord.Role:
+			await ctx.send("Role is not a discord.Role!")
+			pass
+
+		await self.config.guild(guild).joinRole.set(role)
+		await ctx.send("Added prefix %s for role %s on _join_" % (char, role.name))
 
 	@autonick.command()
 	async def add(self, ctx):
@@ -54,10 +68,12 @@ class AutoNick(Cog):
 	async def on_member_join(self, member: discord.Member):
 		guild = member.guild
 		nickname = member.display_name
-		prefix = await self.config.guild(guild).onJoinChar()
+		prefix = await self.config.guild(guild).joinChar()
 		nickname = "%s %s" % (prefix, nickname)
 		loggingChannel = await self.config.guild(guild).logChannel()
 		loggingChannel = guild.get_channel(loggingChannel)
+		joinRole = await.self.config.guild(guild).joinRole()
+		joinRoleName = await.self.config.guild(guild).joinRoleName()
 
-		await member.edit(nick=nickname)
-		await loggingChannel.send("Changed nickname of %s with prefix %s" % (member.display_name, prefix))
+		await member.edit(nick=nickname, role=joinRole)
+		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole.name))

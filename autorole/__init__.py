@@ -1,4 +1,4 @@
-from .autoNick import AutoNick
+from .autoRole import AutoRole
 
 
 def setup(bot):

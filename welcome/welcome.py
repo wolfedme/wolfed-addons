@@ -10,7 +10,7 @@ Cog: Any = getattr(commands, "Cog", object)
 
 # TODO: Refactor functions for more intuitive use
 
-class LeaveMsg(Cog):
+class Welcome(Cog):
 	"""
 	Posts message to channel when a user leaves the Server
 	"""
@@ -26,7 +26,7 @@ class LeaveMsg(Cog):
 
 	@commands.group()
 	@checks.mod_or_permissions(administrator=True)
-	async def leaveMsg(self, ctx: Context):
+	async def welcome(self, ctx: Context):
 		""" Post leave messages on user leave """
 		if ctx.invoked_subcommand is None:
 			guild = ctx.guild

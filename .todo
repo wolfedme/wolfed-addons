@@ -1,5 +1,4 @@
 Autonick
-    - Change Autonick to Autorole
     - Autorole & autorename on join
     - Find function like 'on_member_rolechange'
 
