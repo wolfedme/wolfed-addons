@@ -6,3 +6,6 @@ AutoRole
 Welcome
     - Add feature to add multiple welcome messages and randomize
     - Add missing %s if not persistent
+
+General
+    - Better role-management. Currently mods can change all values
