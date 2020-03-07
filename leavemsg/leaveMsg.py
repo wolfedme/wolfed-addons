@@ -30,12 +30,13 @@ class LeaveMsg(Cog):
 			guild = ctx.guild
 			channel = await self.config.guild(guild).channel()
 			message = await self.config.guild(guild).message()
-			await ctx.send("Posting %s to %s" % (message % "$username$", channel))
+			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel.name))
 
 
 	@leaveMsg.command()
-	async def setMessage(self, ctx: Context):
-
+	async def setMessage(self, ctx: Context, msg):
+		if msg != "":
+			await self.config.guild(ctx.guild).message.set(msg)
 		pass
 
 	@leaveMsg.command()
@@ -48,7 +49,7 @@ class LeaveMsg(Cog):
 		await ctx.send("Posting messages to %s" % ctx.channel.name)
 
 	@commands.Cog.listener()
-	async def onLeave(self, member: discord.Member):
+	async def on_member_remove(self, member: discord.Member):
 		guild = member.guild
 		channel = await self.config.guild(guild).channel()
 
