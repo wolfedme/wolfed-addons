@@ -72,8 +72,8 @@ class AutoRole(Cog):
 		nickname = "%s %s" % (prefix, nickname)
 		loggingChannel = await self.config.guild(guild).logChannel()
 		loggingChannel = guild.get_channel(loggingChannel)
-		joinRole = await.self.config.guild(guild).joinRole()
-		joinRoleName = await.self.config.guild(guild).joinRoleName()
+		joinRole = await self.config.guild(guild).joinRole()
+		joinRoleName = await self.config.guild(guild).joinRoleName()
 
 		await member.edit(nick=nickname, role=joinRole)
 		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole.name))
