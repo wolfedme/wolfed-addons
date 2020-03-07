@@ -28,9 +28,9 @@ class LeaveMsg(Cog):
 		# TODO: return current settings
 		if ctx.invoked_subcommand is None:
 			guild = ctx.guild
-			channel = await self.config.guild(guild).channel
-			message = await self.config.guild(guild).message
-			ctx.send("Posting %s to %s" % (message % "$username$", channel))
+			channel = await self.config.guild(guild).channel()
+			message = await self.config.guild(guild).message()
+			await ctx.send("Posting %s to %s" % (message % "$username$", channel))
 
 
 	@leaveMsg.command()
@@ -54,7 +54,7 @@ class LeaveMsg(Cog):
 
 		if channel != "":
 			channel = guild.get_channel(channel)
-			out = await self.config.guild(guild).message
+			out = await self.config.guild(guild).message()
 			out = (out % member.nick)
 
 			if await self.bot.embed_requested(channel, member):
