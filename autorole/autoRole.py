@@ -26,7 +26,7 @@ class AutoRole(Cog):
 	async def autoRole(self, ctx):
 		pass
 
-	@autonick.command()
+	@autoRole.command()
 	async def onJoin(self, ctx, char, role: discord.Role):
 		"""Define the emoji which gets added in front of a new users nickname. Syntax: `[p]autoRole onJoin [nicknamePrefix] [role]`"""
 		if char == "":
@@ -42,22 +42,22 @@ class AutoRole(Cog):
 		await self.config.guild(guild).joinRole.set(role)
 		await ctx.send("Added prefix %s for role %s on _join_" % (char, role.name))
 
-	@autonick.command()
+	@autoRole.command()
 	async def add(self, ctx):
 		""" Add role to auto rename """
 		await ctx.send("Still doing nothing.")
 
-	@autonick.command()
+	@autoRole.command()
 	async def remove(self, ctx):
 		""" Remove role to auto rename """
 		await ctx.send("Still doing nothing.")
 
-	@autonick.command()
+	@autoRole.command()
 	async def list(self, ctx):
 		""" List all active roles for auto renaming """
 		await ctx.send("Still doing nothing.")
 
-	@autonick.command()
+	@autoRole.command()
 	async def setLog(self, ctx):
 		""" Set the channel to send logs to """
 		guild = ctx.guild

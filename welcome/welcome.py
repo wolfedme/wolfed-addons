@@ -19,7 +19,7 @@ class Welcome(Cog):
 		self.bot = bot
 		self.config = Config.get_conf(self, identifier=69696969, force_registration=True)
 		default_guild = {"channel":      "",
-		                 "channel_name": "Please set a channel with [p]leaveMsg setChannel",
+		                 "channel_name": "Please set a channel with [p]welcome setChannel",
 		                 "message":      "%s isch fort"}
 
 		self.config.register_guild(**default_guild)
@@ -34,10 +34,10 @@ class Welcome(Cog):
 			message = await self.config.guild(guild).message()
 			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel))
 
-	@leaveMsg.command()
+	@welcome.command()
 	async def setMessage(self, ctx: Context, msg: str):
 		"""
-		Sets the message the bots sends on leave. Syntax is [p]leaveMsg setMessage "%s has left"
+		Sets the message the bots sends on leave. Syntax is [p]welcome setMessage "%s has left"
 		:param ctx: Context
 		:param msg: Message needs to have %s as username
 		"""
@@ -46,7 +46,7 @@ class Welcome(Cog):
 			await ctx.send("Message `%s` set." % msg)
 		pass
 
-	@leaveMsg.command()
+	@welcome.command()
 	async def setChannel(self, ctx: Context):
 		"""
 		Sets the channel to return the message to
