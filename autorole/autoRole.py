@@ -67,13 +67,17 @@ class AutoRole(Cog):
 	@commands.Cog.listener()
 	async def on_member_join(self, member: discord.Member):
 		guild = member.guild
-		nickname = member.display_name
+		nickname = member.name
 		prefix = await self.config.guild(guild).joinChar()
 		nickname = "%s %s" % (prefix, nickname)
 		loggingChannel = await self.config.guild(guild).logChannel()
 		loggingChannel = guild.get_channel(loggingChannel)
 		joinRole = await self.config.guild(guild).joinRole()
-		joinRole = [role for role in guild.roles if role.id in joinRole]
+		for r in guild.roles:
+			if r.id == joinRole:
+				joinRole = r
+			else
+				await loggingChannel.send("Autorole does not exist on server. Could not assign role ID %s to user %s" % (joinRole, member.name))
 
 		await member.edit(nick=nickname)
 		await member.add_roles(role, reson=_("Joined"))
