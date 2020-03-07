@@ -21,7 +21,7 @@ class LeaveMsg(Cog):
 
 		self.config.register_guild(**default_guild)
 
-	@commands.group(aliases=["leaveMsg"])
+	@commands.group(aliases=["lmsg"])
 	@checks.mod_or_permissions(administrator=True)
 	async def leaveMsg(self, ctx: Context):
 		""" Mother? """
