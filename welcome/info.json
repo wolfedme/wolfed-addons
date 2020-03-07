@@ -2,14 +2,9 @@
   "author": [
     "Wolfed"
   ],
-  "bot_version": [
-    3,
-    0,
-    0
-  ],
-  "description": "Posts message on leave",
+  "description": "Posts message on user join and leave",
   "hidden": false,
-  "install_msg": "Start with `[p]load leavemsg`, then `[p]help leaveMsg`",
+  "install_msg": "Start with `[p]load welcome`, then `[p]help Welcome`",
   "short": "leavemsg",
   "tags": [
     "wolfed",

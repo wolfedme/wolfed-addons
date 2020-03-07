@@ -1,5 +1,5 @@
-from .leaveMsg import LeaveMsg
+from .welcome import Welcome
 
 
 def setup(bot):
-	bot.add_cog(LeaveMsg(bot))
+	bot.add_cog(Welcome(bot))
