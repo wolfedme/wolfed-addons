@@ -39,7 +39,7 @@ class AutoRole(Cog):
 			await ctx.send("Role is not a discord.Role!")
 			pass
 
-		await self.config.guild(ctx.guild).joinRole.set(role.id)
+		await self.config.guild(ctx.guild).joinRole.set(role)
 		await ctx.send("Added prefix %s for role %s on _join_" % (char, role.name))
 
 	@autoRole.command()
@@ -73,7 +73,7 @@ class AutoRole(Cog):
 		loggingChannel = await self.config.guild(guild).logChannel()
 		loggingChannel = guild.get_channel(loggingChannel)
 		joinRole = await self.config.guild(guild).joinRole()
-		joinRoleName = await self.config.guild(guild).joinRoleName()
 
-		await member.edit(nick=nickname, role=joinRole)
-		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole))
+		await member.edit(nick=nickname)
+		await member.add_roles(role, reson=_("Joined"))
+		await loggingChannel.send("Changed nickname of %s with prefix %s and assigned role %s" % (member.name, prefix, joinRole.name))
