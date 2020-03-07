@@ -20,7 +20,8 @@ class Welcome(Cog):
 		self.config = Config.get_conf(self, identifier=69696969, force_registration=True)
 		default_guild = {"channel":      "",
 		                 "channel_name": "Please set a channel with [p]welcome setChannel",
-		                 "message":      "%s isch fort"}
+						 "joinMessage": "%s hat Freibier dabei",
+		                 "leaveMessage": "%s isch fort"}
 
 		self.config.register_guild(**default_guild)
 
@@ -31,19 +32,32 @@ class Welcome(Cog):
 		if ctx.invoked_subcommand is None:
 			guild = ctx.guild
 			channel = await self.config.guild(guild).channel_name()
-			message = await self.config.guild(guild).message()
-			await ctx.send("Posting `%s` to %s" % (message % "$username$", channel))
+			joinMessage = await self.config.guild(guild).joinMessage()
+			leaveMessage = await self.config.guild(guild).leaveMessage()
+			await ctx.send("Posting `%s` and `%s` to %s" % (leaveMessage % "$username$", welcomeMessage % "$username$" channel))
 
 	@welcome.command()
-	async def setMessage(self, ctx: Context, msg: str):
+	async def setJoinMessage(self, ctx: Context, msg: str):
 		"""
 		Sets the message the bots sends on leave. Syntax is [p]welcome setMessage "%s has left"
 		:param ctx: Context
 		:param msg: Message needs to have %s as username
 		"""
 		if msg != "":
-			await self.config.guild(ctx.guild).message.set(msg)
-			await ctx.send("Message `%s` set." % msg)
+			await self.config.guild(ctx.guild).joinMessage.set(msg)
+			await ctx.send("Leave message `%s` set." % msg)
+		pass
+	
+	@welcome.command()
+	async def setLeaveMessage(self, ctx: Context, msg: str):
+		"""
+		Sets the message the bots sends on leave. Syntax is [p]welcome setMessage "%s has left"
+		:param ctx: Context
+		:param msg: Message needs to have %s as username
+		"""
+		if msg != "":
+			await self.config.guild(ctx.guild).leaveMessage.set(msg)
+			await ctx.send("Leave message `%s` set." % msg)
 		pass
 
 	@welcome.command()
@@ -63,7 +77,22 @@ class Welcome(Cog):
 
 		if channel != "":
 			channel = guild.get_channel(channel)
-			out = await self.config.guild(guild).message()
+			out = await self.config.guild(guild).leaveMessage()
+			out = (out % member.nick)
+
+			await channel.send(out)
+
+		else:
+			pass
+
+	@commands.Cog.listener()
+	async def on_member_join(self, member: discord.Member):
+		guild = member.guild
+		channel = await self.config.guild(guild).channel()
+
+		if channel != "":
+			channel = guild.get_channel(channel)
+			out = await self.config.guild(guild).joinMessage()
 			out = (out % member.nick)
 
 			await channel.send(out)
